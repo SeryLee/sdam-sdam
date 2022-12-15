@@ -10,8 +10,6 @@ import kr.co.greenapple.beans.QnaBean;
 import kr.co.greenapple.beans.UserBean;
 import kr.co.greenapple.pager.Pager;
 
-
-
 @Repository
 public class UserDao {
 

@@ -1,13 +1,11 @@
 package kr.co.greenapple.service;
 
-import java.util.List;
-
+import kr.co.greenapple.beans.BookBean;
+import kr.co.greenapple.dao.BookDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.greenapple.beans.BookBean;
-import kr.co.greenapple.beans.DogBean;
-import kr.co.greenapple.dao.BookDao;
+import java.util.List;
 
 
 @Service

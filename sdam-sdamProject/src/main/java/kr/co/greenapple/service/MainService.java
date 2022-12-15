@@ -1,13 +1,12 @@
 package kr.co.greenapple.service;
 
-import java.util.List;
-
+import kr.co.greenapple.beans.ContentBean;
+import kr.co.greenapple.dao.BoardDao;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.greenapple.beans.ContentBean;
-import kr.co.greenapple.dao.BoardDao;
+import java.util.List;
 
 @Service
 public class MainService {
