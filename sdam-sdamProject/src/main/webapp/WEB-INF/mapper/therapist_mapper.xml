@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="therapist">
+	
+	
+<!-- 	 <insert id="addTherapist" parameterType="kr.co.greenapple.beans.UserBean">
+		<![CDATA[
+			insert into user_table
+			(user_idx, user_name,user_id, user_pw, user_tel, company_id)
+			values (user_seq.nextval, #{user_name}, #{user_id}, #{user_pw}, #{user_tel}, #{company_id})
+		]]>
+	</insert>  -->
+	
+	<!--  <insert id="addTherapist" parameterType="kr.co.greenapple.beans.UserBean">
+		<![CDATA[
+			insert into user_table
+			(user_idx, user_id, user_name, user_pw, user_tel, therapist_license, therapist_picture, therapist_career, therapist_level, therapist_resume, company_id)
+			values (user_seq.nextval,#{user_id}, #{user_name}, #{user_pw}, #{user_tel}, #{therapist_license, jdbcType=VARCHAR}, #{therapist_picture,jdbcType=VARCHAR}, #{therapist_career}, #{therapist_level}, #{therapist_resume,jdbcType=VARCHAR}, #{company_id})
+		]]>
+	</insert> -->
+	
+	<!-- <select id="getLoginUserInfo" parameterType="kr.co.greenapple.beans.UserBean" resultType="kr.co.greenapple.beans.UserBean">
+		<![CDATA[
+			select user_idx, user_name
+			from user_table
+			where user_id=#{user_id} and user_pw=#{user_pw}
+		]]>
+	</select> -->
+	
+</mapper>

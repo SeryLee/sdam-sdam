@@ -13,8 +13,6 @@
 <meta content="" name="description" />
 
 <!-- Bootstrap CDN -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -95,12 +93,8 @@
         </h1>
         <nav aria-label="breadcrumb animated slideInDown">
           <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item">
-              <a class="text-white" href="${root }main">Home</a>
-            </li>
-            <li class="breadcrumb-item text-primary active" aria-current="page">
-              회원가입
-            </li>
+            <li class="breadcrumb-item text-white"><a class="text-white" href="${root }main">Home</a> &nbsp;/</li>
+            <li class="breadcrumb-item text-primary active" aria-current="page">회원가입</li>
           </ol>
         </nav>
       </div>

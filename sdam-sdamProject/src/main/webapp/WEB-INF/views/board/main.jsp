@@ -12,8 +12,8 @@
 <meta content="" name="description" />
 
 <!-- Bootstrap CDN -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"> -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -40,9 +40,9 @@
 	rel="stylesheet" />
 
 <!-- Libraries Stylesheet -->
-<link href="lib/animate/animate.min.css" rel="stylesheet" />
-<link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
-<link href="lib/owlcarousel/assets/owl.carousel.min.css"
+<link href="../lib/animate/animate.min.css" rel="stylesheet" />
+<link href="../lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
+<link href="../lib/owlcarousel/assets/owl.carousel.min.css"
 	rel="stylesheet" />
 
 <!-- Customized Bootstrap Stylesheet -->
@@ -55,6 +55,41 @@
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
+<!-- 22.09.06 QnA 연결(임시) -->
+    <!-- Page Header Start -->
+    <div class="container-fluid header-bg py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+      <div class="container py-5">
+        <h1 class="display-4 text-white mb-3 animated slideInDown">
+          고객센터
+        </h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+				<ol class="breadcrumb mb-0">
+					<li class="breadcrumb-item text-white"><a class="text-white"
+						href="${root }main">Home</a> &nbsp;/</li>
+					<li class="breadcrumb-item text-primary active text-white" aria-current="page">고객센터 &nbsp;/</li>	
+					<li class="breadcrumb-item text-primary active" aria-current="page">QnA</li>
+				</ol>
+        </nav>
+      </div>
+    </div>
+    <!-- Page Header End -->
+
+	<div class="container-xxl pt-5">
+	<div class="container">
+		<div class="row g-5 mb-5 align-items-end wow fadeInUp"
+			data-wow-delay="0.1s">
+			<div class="col-lg-6">
+				<h1 class="display-6 mb-0 pb-3">QnA</h1>
+				<p>
+					<span class="text-primary me-2">#</span>문의 사항을 게시판에 남겨주세요.
+				</p>
+			</div>
+		</div>
+		</div>
+	</div>
+<!-- --------- QnA end ----------- -->
+
+
 <!-- 게시글 리스트 -->
 <div class="container" style="margin-top:100px">
 	<div class="card shadow">
@@ -64,7 +99,7 @@
 				<thead>
 					<tr>
 						<th class="text-center d-none d-md-table-cell">글번호</th>
-						<th class="w-50">제목</th>
+						<th  class="text-center d-none d-md-table-cell">제목</th>
 						<th class="text-center d-none d-md-table-cell">작성자</th>
 						<th class="text-center d-none d-md-table-cell">작성날짜</th>
 					</tr>
@@ -73,7 +108,7 @@
 					<c:forEach var="obj" items="${contentList }">
 					<tr>
 						<td class="text-center d-none d-md-table-cell">${obj.content_idx }</td>
-						<td><a href='${root }board/read?board_info_idx=${board_info_idx}&content_idx=${obj.content_idx}&page=${page}'>${obj.content_subject }</a></td>
+						<td><a href='${root }board/read?board_info_idx=${board_info_idx}&content_idx=${obj.content_idx}&page=${page}' class="text-black-50">${obj.content_subject }</a></td>
 						<td class="text-center d-none d-md-table-cell">${obj.content_writer_name }</td>
 						<td class="text-center d-none d-md-table-cell">${obj.content_date }</td>
 					</tr>
@@ -136,7 +171,7 @@
 			</div>
 			
 			<div class="text-right">
-				<a href="${root }board/write?board_info_idx=${board_info_idx}" class="btn btn-primary">글쓰기</a>
+				<a href="${root }customer/write" class="btn btn-primary">글쓰기</a>
 			</div>
 			
 		</div>

@@ -13,8 +13,6 @@
 <meta content="" name="description" />
 
 <!-- Bootstrap CDN -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -54,7 +52,41 @@
 </head>
 <body>
 
-<c:import url="/WEB-INF/views/include/top_menu.jsp"></c:import>
+<c:import url="/WEB-INF/views/include/top_menu.jsp" />
+
+    <!-- QnA Page Header Start -->
+    <div class="container-fluid header-bg py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+      <div class="container py-5">
+        <h1 class="display-4 text-white mb-3 animated slideInDown">
+          고객센터
+        </h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+				<ol class="breadcrumb mb-0">
+					<li class="breadcrumb-item text-white"><a class="text-white"
+						href="${root }main">Home</a> &nbsp;/</li>
+					<li class="breadcrumb-item text-primary active text-white" aria-current="page">고객센터 &nbsp;/</li>	
+					<li class="breadcrumb-item text-primary active" aria-current="page">QnA</li>
+				</ol>
+        </nav>
+      </div>
+    </div>
+    
+
+	<div class="container-xxl pt-5">
+	<div class="container">
+		<div class="row g-5 mb-5 align-items-end wow fadeInUp"
+			data-wow-delay="0.1s">
+			<div class="col-lg-6">
+				<h1 class="display-6 mb-0 pb-3">QnA</h1>
+				<p>
+					<span class="text-primary me-2">#</span>문의 사항을 게시판에 남겨주세요.
+				</p>
+			</div>
+		</div>
+		</div>
+	</div>
+    <!---------------- QnA Page Header ----------- -->
+
 
 <div class="container" style="margin-top:100px">
 	<div class="row">
@@ -62,7 +94,7 @@
 		<div class="col-sm-6">
 			<div class="card shadow">
 				<div class="card-body">
-					<form:form action="${root }board/write_pro" method="post" modelAttribute="writeContentBean" enctype="multipart/form-data">
+					<form:form action="${root }customer/write_pro" method="post" modelAttribute="writeContentBean" enctype="multipart/form-data">
 						<form:hidden path="content_board_idx"/>
 						<div class="form-group">
 							<form:label path="content_subject">제목</form:label>

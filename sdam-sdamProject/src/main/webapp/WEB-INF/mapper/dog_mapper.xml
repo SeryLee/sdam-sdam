@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dog">
+
+<!-- insert into therapy_dog_table
+	(dog_idx, dog_name, dog_type, dog_age, dog_sex, dog_neutralization, dog_memo, dog_picture, dog_tag, company_id)
+	values (dog_seq.nextval, #{dog_name}, #{dog_type}, #{dog_age}, #{dog_sex}, #{dog_neutralization}, #{dog_memo}, #{dog_picture, jdbcType=VARCHAR}, #{dog_tag}, #{company_id}) -->
+			
+	<insert id="addDog" parameterType="kr.co.greenapple.beans.DogBean">
+		
+		<selectKey keyProperty="dog_idx" order="BEFORE" resultType="java.lang.Integer">
+			select dog_seq.nextval from dual
+		</selectKey>
+		
+		<![CDATA[
+			insert into therapy_dog_table
+			(dog_idx, dog_name, dog_type, dog_age, dog_sex, DOG_NEUTRALIZATION, dog_memo, dog_picture, dog_tag, company_id)
+			values (#{dog_idx}, #{dog_name}, #{dog_type}, #{dog_age}, #{dog_sex}, #{dog_neutralization}, #{dog_memo}, #{dog_picture, jdbcType=VARCHAR}, #{dog_tag}, #{company_id})
+		]]>
+	</insert>
+	<!-- mybatis 사용 시, NULL허용 컬럼에 NULL이 들어갈 시 오류가 나지 않게 => jdbcType=VARCHAR -->
+	
+	<!-- 테라피스트 여부 / user_info 가져오기 / 넘어오는값 parameterType / 반환타입 resultType -->
+	<select id="getUserInfo" parameterType="java.lang.Integer"  resultType="kr.co.greenapple.beans.UserBean">
+		<![CDATA[
+			select user_idx, user_info 
+			from user_table
+			where user_idx = #{user_idx} and user_info = 'T'
+		]]>
+	</select>
+	
+	<select id="getDogs" resultType="kr.co.greenapple.beans.DogBean">
+		<![CDATA[
+			select * from
+			(select T1.*, rownum rnum from
+				(select d.dog_idx, d.dog_name, d.dog_type, d.dog_age, d.dog_sex, d.dog_neutralization, d.dog_memo, d.dog_picture, d.dog_tag, c.company_local
+					from therapy_dog_table d, company_table c where c.company_id = d.company_id order by d.dog_idx desc) T1)
+			where rnum between ((#{page}-1) * #{perPage} + 1) and (#{page} * #{perPage})
+		]]>
+	</select> 
+	
+	<select id="total" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM therapy_dog_table
+	</select>
+	
+	
+	<select id="modalDogs" parameterType="java.lang.Integer" resultType="kr.co.greenapple.beans.DogBean">
+		<![CDATA[
+			select t.dog_idx, t.dog_type, t.dog_sex, t.dog_age, c.company_local, t.dog_memo, t.dog_neutralization
+			from therapy_dog_table t, company_table c 
+			where t.company_id=c.company_id and t.dog_idx = #{dog_idx}
+		]]>
+	</select> 
+	
+</mapper>

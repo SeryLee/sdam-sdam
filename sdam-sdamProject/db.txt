@@ -1,0 +1,10 @@
+-- user 생성, password 설정
+alter session set "_ORACLE_SCRIPT"=true;
+create user my_db identified by my_db_pass;
+-- 권한 주기
+grant connect to my_db;
+grant create table to my_db;
+grant unlimited tablespace to my_db;
+grant create any index to my_db;
+grant create session to my_db;
+grant create sequence to my_db;

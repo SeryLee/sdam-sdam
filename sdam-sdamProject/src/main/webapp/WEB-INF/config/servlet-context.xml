@@ -47,7 +47,8 @@
 	<beans:bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSession">
 		<beans:property name="dataSource" ref="basic_data_source"/>
 		<beans:property name="mapperLocations" value="/WEB-INF/mapper/*.xml"/>
-	</beans:bean>
+		<beans:property name="configLocation" value="/WEB-INF/config/mybatis-config.xml"/> 
+	</beans:bean> <!-- 220929 mybatis 1111 부적합한열유형 오류 / name="configLocation" 널 허용 -->
 	
 	<beans:bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSessionTemplate">
 		<beans:constructor-arg index="0" ref="sqlSession"/>
@@ -86,6 +87,7 @@
 		<beans:constructor-arg ref="messageSource"/>
 	</beans:bean>
 	
+	<!-- 파일업로드 -->
 	<beans:bean class="org.springframework.web.multipart.support.StandardServletMultipartResolver"
 		id="multipartResolver"/>
 </beans:beans>

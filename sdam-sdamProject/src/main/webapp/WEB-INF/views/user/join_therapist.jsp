@@ -13,8 +13,6 @@
 <meta content="" name="description" />
 
 <!-- Bootstrap CDN -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -51,7 +49,28 @@
 
 <!-- Template Stylesheet -->
 <link href="../css/style.css" rel="stylesheet" />
+<!-- 회원가입 기업 검색창 js -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="../js/data.js"></script>
 </head>
+<script>
+	
+	$(function () {	//화면 로딩후 시작
+		$("#searchInput").autocomplete({  //오토 컴플릿트 시작
+			source: List,	// source는 data.js파일 내부의 List 배열
+			focus : function(event, ui) { // 방향키로 자동완성단어 선택 가능하게 만들어줌	
+				return false;
+			},
+			minLength: 1,// 최소 글자수
+			delay: 100,	//autocomplete 딜레이 시간(ms)
+			//disabled: true, //자동완성 기능 끄기
+		});
+	});
+</script>
+
+
 <script>
 	function checkUserIdExist(){
 		var user_id = $("#user_id").val()
@@ -79,6 +98,33 @@
 	function resetUserIdExist(){
 		$("#userIdExist").val('false')
 	}
+	
+	function checkUserTelExist(){
+		var user_tel = $("#user_tel").val()
+		
+		if(user_tel.lenght == 0){
+			alert("전화번호를 입력해주세요")
+			return
+		}
+		$.ajax({
+			url : '${root}user/checkUserTelExist/'+user_tel,
+			type : 'get',
+			dataType : 'text',
+			success : function(result){
+				if(result.trim() == 'true'){
+					alert('확인이 완료되었습니다')
+					$("#userTelExist").val('true')
+				}else {
+					alert('이미 가입된 전화번호입니다')
+					$("#userTelExist").val('false')
+				}
+			}
+		})
+	}
+	
+	
+	
+	
 </script>
 <body>
 
@@ -95,12 +141,8 @@
         </h1>
         <nav aria-label="breadcrumb animated slideInDown">
           <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item">
-              <a class="text-white" href="${root }main">Home</a>
-            </li>
-            <li class="breadcrumb-item text-primary active" aria-current="page">
-              회원가입
-            </li>
+            <li class="breadcrumb-item text-white"><a class="text-white" href="${root }main">Home</a> &nbsp;/</li>
+            <li class="breadcrumb-item text-primary active" aria-current="page">회원가입</li>
           </ol>
         </nav>
       </div>
@@ -113,13 +155,26 @@
 		<div class="col-sm-6">
 			<div class="card shadow">
 				<div class="card-body">
-					<form:form action="${root }user/join_pro" method="post" modelAttribute="joinUserBean">
+					<form:form action="${root }user/join_pro" method="post" modelAttribute="joinUserBean" enctype="multipart/form-data">
 						<form:hidden path="userIdExist"/>
+						<form:hidden path="userTelExist"/>
+						<form:hidden path="user_info" value="T"/>
+						<div class="form-group">
+							<form:label path="company_id">소속회사 </form:label>
+							<form:input  path="company_id" class="form-control" id="searchInput" />
+						</div>
+						
 						<div class="form-group">
 							<form:label path="user_name">이름</form:label>
 							<form:input path="user_name" class="form-control"/>
 							<form:errors path="user_name" style="color:red"/>
 						</div>
+						
+						<div class="form-group">
+							<form:label path="therapist_level">테라피스트 경력</form:label>
+							<form:input path="therapist_level" class="form-control" placeholder="숫자를 입력해주세요"/>
+						</div>
+						
 						<div class="form-group">
 							<form:label path="user_id">아이디</form:label>
 							<div class="input-group">
@@ -141,6 +196,22 @@
 							<form:errors path="user_pw2" style="color:red"/>
 						</div>
 						<div class="form-group">
+									<form:label path="user_tel">전화번호</form:label>
+									<div class="input-group">
+										<form:input path="user_tel" class="form-control"
+											onkeypress="resetUserTelExist()" placeholder="-를 제외하고 작성" />
+										<div class="input-group-append">
+											<button type="button" class="btn btn-primary"
+												onclick="checkUserTelExist()">중복확인</button>
+										</div>
+									</div>
+									<form:errors path="user_tel" style="color:red" />
+								</div>
+						<div class="form-group pb-4">
+							<form:label path="upload_file" class="pb-2">프로필사진</form:label>
+							<form:input type="file" path="upload_file" class="form-control pb-3" accept="image/*"/>
+						</div> 
+						<div class="form-group">
 							<div class="text-right">
 								<form:button class="btn btn-primary">회원가입</form:button>
 							</div>
@@ -157,11 +228,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-

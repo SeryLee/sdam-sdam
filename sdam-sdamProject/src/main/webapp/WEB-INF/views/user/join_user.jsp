@@ -7,14 +7,14 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>쓰담쓰담</title>
+<title>개인회원 회원가입</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <meta content="" name="keywords" />
 <meta content="" name="description" />
 
 <!-- Bootstrap CDN -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"> -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -41,9 +41,9 @@
 	rel="stylesheet" />
 
 <!-- Libraries Stylesheet -->
-<link href="lib/animate/animate.min.css" rel="stylesheet" />
-<link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
-<link href="lib/owlcarousel/assets/owl.carousel.min.css"
+<link href="../lib/animate/animate.min.css" rel="stylesheet" />
+<link href="../lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
+<link href="../lib/owlcarousel/assets/owl.carousel.min.css"
 	rel="stylesheet" />
 
 <!-- Customized Bootstrap Stylesheet -->
@@ -51,6 +51,16 @@
 
 <!-- Template Stylesheet -->
 <link href="../css/style.css" rel="stylesheet" />
+
+
+<style type="text/css">
+input::placeholder{
+color: #ccc;
+font-size: 0.7em;
+}
+</style>
+
+
 </head>
 <script>
 	function checkUserIdExist(){
@@ -119,12 +129,13 @@
 			</h1>
 			<nav aria-label="breadcrumb animated slideInDown">
 				<ol class="breadcrumb mb-0">
-					<li class="breadcrumb-item"><a class="text-white"
-						href="${root }main">Home</a></li>
-					<li class="breadcrumb-item"><a class="text-white"
-						href="${root }user/join_select">회원가입</a></li>
+					<li class="breadcrumb-item text-white"><a class="text-white"
+						href="${root }main">Home</a> &nbsp;/</li>
 					<li class="breadcrumb-item text-primary active" aria-current="page">
-						개인회원</li>
+						<a class="text-white" href="${root }user/join_select">회원가입 &nbsp;/</a>
+						
+					</li>
+					<li class="breadcrumb-item text-primary active" aria-current="page">개인회원</li>
 				</ol>
 			</nav>
 		</div>
@@ -132,13 +143,28 @@
 	<!-- Page Header End -->
 	
 	<!-- Join Form Start -->
-	<div class="row g-4 mb-5">
+	<div class="container-xxl py-5">
+		<div class="container">
+			<div class="row g-5">
+			
+				<div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+					<div class="h-100" style="min-height: 400px">
+						<img class="img-fluid" src="../image/join001.jpg" alt="빠르게가입하고 모든 테라피독을 만나보세요" />
+					</div>
+				</div>
+				
+				<div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+					<div class="card shadow">
+						<div class="card-body">
+	
+<!-- 	<div class="row g-4 mb-5">
 		<div class="container" style="margin-top: 100px">
 			<div class="row">
 				<div class="col-sm-3"></div>
+				
 				<div class="col-sm-6">
 					<div class="card shadow">
-						<div class="card-body">
+						<div class="card-body"> -->
 							<form:form action="${root }user/join_pro" method="post"
 								modelAttribute="joinUserBean">
 								<form:hidden path="userIdExist" />
@@ -146,7 +172,7 @@
 								<form:hidden path="user_info" value="user" />
 								<div class="form-group">
 									<form:label path="user_name">이름</form:label>
-									<form:input path="user_name" class="form-control" />
+									<form:input path="user_name" class="form-control" placeholder="2 ~ 4자리의 한글 이름 입력"/>
 									<form:errors path="user_name" style="color:red" />
 								</div>
 								<div class="form-group">
@@ -187,7 +213,7 @@
 									<form:label path="user_address">주소</form:label>
 									<div class="input-group mb-1">
 										<form:input path="user_address" id="address_input"
-											class="form-control" />
+											class="form-control" readonly="true"/>
 										<div class="input-group-append">
 											<button type="button" class="btn btn-primary"
 												id="address_kakao"">주소검색</button>
@@ -213,8 +239,8 @@
 						}
 						</script>
 								<div class="form-group">
-									<div class="text-right">
-										<form:button class="btn btn-primary">회원가입</form:button>
+									<div class="text-right py-4 text-end">
+										<form:button class="btn btn-primary" style="width:30%">회원가입</form:button>
 									</div>
 								</div>
 							</form:form>
@@ -232,11 +258,4 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
 

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="book">
+			
+	<insert id="addBook" parameterType="kr.co.greenapple.beans.BookBean">
+		<selectKey keyProperty="service_idx" order="BEFORE" resultType="java.lang.Integer">
+			select service_seq.nextval from dual
+	</selectKey>
+		<![CDATA[
+			insert into service_table
+			(service_idx, service_date, service_time, service_check, user_idx, dog_idx)
+		     values (#{service_idx}, #{service_date}, #{service_time}, #{service_check}, #{user_idx}, #{dog_idx})		
+		]]>
+	</insert>
+	
+	<!-- select company_local as service_local, dog_idx, dog_name -->
+	<!-- from THERAPY_DOG_TABLE T, COMPANY_TABLE C -->
+	<!-- where T.COMPANY_ID=C.COMPANY_ID and service_local = #{company_local} -->
+	<select id="showDog" parameterType="kr.co.greenapple.beans.BookBean" resultType="kr.co.greenapple.beans.BookBean">
+        SELECT * FROM THERAPY_DOG_TABLE T
+		LEFT JOIN COMPANY_TABLE C ON T.COMPANY_ID = C.COMPANY_ID 
+		WHERE 1=1
+		<if test='company_local != null and company_local != ""'>
+			 AND C.company_local = #{company_local} 
+		</if>
+
+		<if test='service_date != null and service_date != ""'>
+			AND DOG_IDX  NOT IN  (
+				SELECT DOG_IDX FROM SERVICE_TABLE S
+				WHERE S.service_date = #{service_date}
+			)
+		</if>
+		<if test='!dog_tag.empty'>
+			<foreach collection="dog_tag" item="dog">
+				 AND T.DOG_TAG like '%'|| #{dog} ||'%'
+			</foreach>
+		</if>
+	</select>
+</mapper>
+
+<!-- <foreach collection="dog_tag" index="index" item="dog" open="" close="" separator="">
+	AND T.DOG_TAG like '%'|| #{dog} ||'%'
+</foreach> -->

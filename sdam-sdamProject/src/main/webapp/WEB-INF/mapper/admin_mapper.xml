@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+	
+	<!-- admin 회원 관리 -->
+	<select id="getAdminUserList" parameterType="java.lang.Integer" resultType="kr.co.greenapple.beans.UserBean">
+		<![CDATA[
+		
+		select * from
+			(select aduser.*, rownum rnum from
+				(select user_idx, user_id, user_name, user_address, user_birth, user_tel
+			from user_table
+			order by user_idx) aduser)
+			where rnum between ((#{page}-1) * #{perPage} + 1) and (#{page} * #{perPage})
+		]]>
+	</select>
+	
+	<select id="userTotal" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM user_table
+	</select>
+	
+	<delete id="AdmindeleteUser" parameterType="java.lang.Integer">
+		<![CDATA[
+			delete from user_table where user_idx = #{user_idx}
+		]]>
+	</delete>
+	
+	<select id="getAdminUserBook" parameterType="java.lang.Integer" resultType="kr.co.greenapple.beans.BookBean">
+		<![CDATA[
+			select * from
+			(select adbook.*, rownum rnum from
+				(SELECT S.SERVICE_IDX,
+					S.SERVICE_DATE,
+					S.SERVICE_TIME,
+					U.USER_ID,
+					T.DOG_NAME,
+					S.SERVICE_CHECK
+			FROM SERVICE_TABLE S, USER_TABLE U, THERAPY_DOG_TABLE T
+			WHERE S.USER_IDX = U.USER_IDX AND T.DOG_IDX = S.DOG_IDX
+			ORDER BY SERVICE_IDX desc) adbook)
+			where rnum between ((#{page}-1) * #{perPage} + 1) and (#{page} * #{perPage})
+		]]>
+	</select>
+	
+	<select id="bookTotal" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM service_table
+	</select>
+	
+	<update id="adminUserBookAllow">
+			update service_table set service_check = 'O'
+			where service_idx = #{service_idx}	
+	</update>
+	
+		<update id="adminUserBookNotAllow">
+			update service_table set service_check = 'X'
+			where service_idx = #{service_idx}	
+	</update>
+	
+</mapper>
