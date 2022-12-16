@@ -17,39 +17,25 @@
 				</div>
 			</div>
 			<div class="col-lg-5 px-5 text-end">
-				<!-- <div class="h-100 d-inline-flex align-items-center py-3 me-4">
-					<small class="fa fa-phone-alt text-primary me-2"></small> <small>+012
-						345 6789</small>
-				</div>
-				<div class="h-100 d-inline-flex align-items-center">
-					<a class="btn btn-sm-square bg-white text-primary me-1" href=""><i
-						class="fab fa-facebook-f"></i></a> <a
-						class="btn btn-sm-square bg-white text-primary me-1" href=""><i
-						class="fab fa-twitter"></i></a> <a
-						class="btn btn-sm-square bg-white text-primary me-1" href=""><i
-						class="fab fa-linkedin-in"></i></a> <a
-						class="btn btn-sm-square bg-white text-primary me-0" href=""><i
-						class="fab fa-instagram"></i></a>
-				</div> -->
-				<div class="h-100 d-inline-flex align-items-center py-3 me-4">
+				<div class="h-100 d-inline-flex align-items-center py-3 ms-4">
 					<c:choose>
 						<c:when test="${loginUserBean.userLogin == true }">
 								<c:choose>
 									<c:when test="${loginUserBean.user_idx eq 1}">
 										<i class="bi bi-person-circle"></i> &nbsp;<c:out value="${loginUserBean.user_name}" />님 &nbsp;&nbsp;&nbsp;
-										<a role="button" href="${root}admin/user" class="btn btn-outline-warning me-2">관리페이지</a>
-										<a role="button" href="${root}user/logout" class="btn btn-outline-warning me-2">로그아웃</a>
+										<a role="button" href="${root}admin/user" class="btn btn-outline-warning ms-2">관리페이지</a>
+										<a role="button" href="${root}user/logout" class="btn btn-outline-warning ms-2">로그아웃</a>
 									</c:when>
 									<c:otherwise>
 										<i class="bi bi-person-circle"></i> &nbsp;<c:if test="${not empty loginUserBean.user_info}">테라피스트</c:if> <c:out value="${loginUserBean.user_name}" />님 &nbsp;&nbsp;&nbsp;
-										<a role="button" href="${root}/user/modify" class="btn btn-outline-warning me-2">마이페이지</a>
-										<a role="button" href="${root}/user/logout" class="btn btn-outline-warning me-2">로그아웃</a>
+										<a role="button" href="${root}/user/modify" class="btn btn-outline-warning ms-2">마이페이지</a>
+										<a role="button" href="${root}/user/logout" class="btn btn-outline-warning ms-2">로그아웃</a>
 									</c:otherwise>
 								</c:choose>
 						</c:when>
 						<c:otherwise>
-							<a role="button" href="${root }user/join_select" class="btn btn-primary me-2">회원가입</a>
-							<a role="button" href="${root }user/login" class="btn btn-primary me-2">로그인</a> 
+							<a role="button" href="${root }user/join_select" class="btn btn-primary ms-2">회원가입</a>
+							<a role="button" href="${root }user/login" class="btn btn-primary ms-2">로그인</a>
 						</c:otherwise>
 					</c:choose>				
 				</div>
