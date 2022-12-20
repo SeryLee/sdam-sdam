@@ -22,17 +22,12 @@ public class DogService {
 	@Value("${path.upload}")
 	private String path_upload; //첨부파일 경로 주입
 	
-	@Autowired
-	private DogDao dogDao;
-	
-	@Resource(name = "dogBean")
-	@Lazy
-	private DogBean dogBean;
-	
-	@Resource(name = "userBean")
-	@Lazy
-	private UserBean userBean;
-	
+	private final DogDao dogDao;
+
+	public DogService(DogDao dogDao) {
+		this.dogDao = dogDao;
+	}
+
 	//파일 저장
 	private String saveUploadFile(MultipartFile upload_file) {
 		String file_name = System.currentTimeMillis() + "_" + upload_file.getOriginalFilename();
@@ -53,7 +48,7 @@ public class DogService {
 			String file_name = saveUploadFile(upload_file);
 			dogBean.setDog_picture(file_name);
 		}
-		
+		dogBean.setCompany_id(0);
 		dogDao.addDog(dogBean);
 	}
 

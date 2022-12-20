@@ -13,8 +13,8 @@ public class DogBean {
 	private String dog_memo; 		   //소개
 	private String dog_picture; 	   //사진 //데이터베이스에 저장된 파일 이름을 담을 변수 (클라이언트)
 	private String dog_tag; 		   //해시태그
-	private String company_id; 		   //회사ID_FK
-	
+	private int company_id; 		   //회사 ID_FK
+	private String company_loginId;     //회사 로그인 ID
 	private MultipartFile upload_file; //문자열 dog_ficture를 받기 위해 생성 //브라우저가 보낸 파일을 담기 위한 변수 (서버)
 	private String company_local; 	   //테라피독 지역
 	
@@ -81,27 +81,25 @@ public class DogBean {
 	public void setDog_tag(String dog_tag) {
 		this.dog_tag = dog_tag;
 	}
-	public String getCompany_id() {
+	public int getCompany_id() {
 		return company_id;
 	}
-	public void setCompany_id(String company_id) {
+	public void setCompany_id(int company_id) {
 		this.company_id = company_id;
 	}
-	
-	//
+	public String getCompany_loginId() {return company_loginId;}
+	public void setCompany_loginId(String company_loginId) {this.company_loginId = company_loginId;}
 	public MultipartFile getUpload_file() {
 		return upload_file;
 	}
 	public void setUpload_file(MultipartFile upload_file) {
 		this.upload_file = upload_file;
 	}
-
-	//
 	public String getCompany_local() {
 		return company_local;
 	}
 	public void setCompany_local(String company_local) {
 		this.company_local = company_local;
 	}
-	
+
 }

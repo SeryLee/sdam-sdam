@@ -35,6 +35,21 @@ start with 0
 increment by 1
 minvalue 0;
 
+create sequence dog_seq
+start with 0
+increment by 1
+minvalue 0;
+
+create sequence service_seq
+start with 0
+increment by 1
+minvalue 0;
+
+create sequence qna_seq
+start with 0
+increment by 1
+minvalue 0;
+
 -- board_info_table
 create table board_info_table(
 	board_info_idx  INTEGER      NOT NULL,
@@ -88,8 +103,8 @@ CREATE TABLE therapy_dog_table (
                                    dog_type           VARCHAR(50)  NULL,     -- 테라피독견종
                                    dog_age            INTEGER      NOT NULL, -- 테라피독나이
                                    dog_sex            VARCHAR(10)  NOT NULL, -- 테라피독성별
-                                   dog_neutralization INTEGER      NULL,     -- 중성화여부
-                                   dog_memo           LONG VARCHAR NULL,     -- 테라피독소개
+                                   dog_neutralization VARCHAR(20)  NOT NULL, -- 중성화여부
+                                   dog_memo           LONG VARCHAR NOT NULL, -- 테라피독소개
                                    dog_picture        VARCHAR(500) NULL,     -- 테라피독사진
                                    dog_tag            VARCHAR(50)  NOT NULL, -- 테라피독태그
                                    company_id         INTEGER      NOT NULL  -- 기업ID

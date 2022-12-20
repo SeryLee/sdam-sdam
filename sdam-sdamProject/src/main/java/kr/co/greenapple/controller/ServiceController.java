@@ -5,13 +5,11 @@ import kr.co.greenapple.beans.UserBean;
 import kr.co.greenapple.pager.Pager;
 import kr.co.greenapple.service.DogService;
 import kr.co.greenapple.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -27,68 +25,42 @@ public class ServiceController {
 		this.userService = userService;
 	}
 
-	@Resource(name="dogBean")
-	@Lazy
-	private DogBean dogBean;
-
-	@Resource(name = "loginUserBean")
-	@Lazy
-	private UserBean loginUserBean;
-
 	//테라피독
 	@GetMapping("/therapydog")
-	public String therapydog(
-//			@RequestParam("user_idx") int user_idx,
-//			@ModelAttribute("userInfoBean") UserBean userInfoBean,
-			Pager dogPager,
-			Model model) {
+	public String therapydog(Pager dogPager, Model model) {
 		
 		List<DogBean> list = dogService.getDogs(dogPager);
 		model.addAttribute("dogList", list);
-		
-//		userService.getLoginUserInfo(userInfoBean);
-//		userService.getDogUserInfo(user_idx);
-//		userService.getUserInfo();
-//		userService.getDogUserInfo(userInfoBean);
-//		userService.getUserInfo(user_idx);
-		
-		
-//테라피스트 정보를 가져오려면 /service/therapydog?user_idx=3 이런식으로 해당 테라피스트 user_idx를 같이 넘겨줘야될 것 같고
-//		UserBean ubean = userService.getUserInfo(user_idx);
-//		UserBean ubean = userService.getUserInfo(userInfoBean.getUser_idx());
-//		model.addAttribute("userInfo", ubean);
-				
-//		System.out.println(ubean.getUser_info());
 				
 		return "service/therapydog";
 	}
 
 	//modal 테라피독 정보
-	@GetMapping("/getdoginfo")
+	@GetMapping("/getDogInfo")
 	//@ResponseBody  jsp파일 자체를 return할 때는 @ResponseBody 없어야함
-	public String getdoginfo(@RequestParam int dog_idx,
+	public String getDogInfo(@RequestParam int dog_idx,
 							 Model model) {
 		//dog_idx값 받아서 쿼리 작성 ->
 		DogBean dogInfo = dogService.modalDogs(dog_idx);
 		//model.addAttribute부분 작성
 		model.addAttribute("dogInfo", dogInfo);
 
-		return "service/modaldog";
+		return "service/modalDog";
 	}
 		
 	//테라피독 등록
-	@GetMapping("/adddog")
-	public String adddog_get(@ModelAttribute("dogBean") DogBean dogBean, UserBean userBean) {
-		
-		return "service/adddog";
+	@GetMapping("/addDog")
+	public String addDog(@ModelAttribute("dogBean") DogBean dogBean) {
+		return "service/addDog";
 	}
 	
-	@PostMapping("/joindog")
-	public String adddog_post(@Valid @ModelAttribute("dogBean") DogBean dogBean) {
-
+	@PostMapping("/addDog_pro")
+	public String addDog_pro(@Valid @ModelAttribute("dogBean") DogBean dogBean, BindingResult result) {
+		if(result.hasErrors()) {
+			return "service/addDog";
+		}
 		dogService.addDog(dogBean);
-		
-		return "service/adddog_success";
+		return "service/addDog_success";
 	}
 	
 	//테라피스트 페이징

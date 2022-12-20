@@ -51,7 +51,7 @@
 <!-- Spinner End -->
 	
 <!-- TOP MENU -->
-<c:import url="/WEB-INF/views/include/top_menu.jsp"></c:import>
+<c:import url="/WEB-INF/views/include/top_menu.jsp"/>
 
 <!-- Page Header Start -->
 <div class="container-fluid header-bg py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
@@ -84,35 +84,28 @@
 		<div class="col-sm-6">
 			<div class="card shadow">
 				<div class="card-body">
-					<form:form action="${root }service/joindog" method="post" modelAttribute="dogBean" enctype="multipart/form-data">
+					<form:form action="${root }service/addDog_pro" method="post" modelAttribute="dogBean" enctype="multipart/form-data">
 						<div class="form-group pb-2">
 							<form:label path="dog_name" class="pb-2">이름</form:label>
 							<form:input path="dog_name" class="form-control"/>
-					<%--    <form:errors path="dog_name" style="color:red"/> --%>	
 						</div>
 						<div class="form-group pb-2">
 							<form:label path="dog_type" class="pb-2">견종</form:label>
 							<form:input path="dog_type" class="form-control"/>
-					<%--    <form:errors path="dog_name" style="color:red"/> --%>	
 						</div>
 						<div class="form-group pb-2">
 							<form:label path="dog_age" class="pb-2">나이</form:label>
 							<form:input path="dog_age" class="form-control col-3"/>
-					<%--    <form:errors path="dog_name" style="color:red"/> --%>	
 						</div>
 						<div class="form-group pb-2">
 							<form:label path="dog_sex" class="pb-2">성별</form:label><br>
 							<form:radiobutton path="dog_sex" value="여아" id="XX" class="col-1"/> 여아 &nbsp;
 							<form:radiobutton path="dog_sex" value="남아" id="XY" class="col-1"/> 남아
-				<%--		<form:input path="dog_sex" class="form-control"/>
-							<form:errors path="dog_name" style="color:red"/> --%>	
 						</div>
 						<div class="form-group pb-2">
 							<form:label path="dog_neutralization" class="pb-2">중성화 여부</form:label><br>
 							<form:radiobutton path="dog_neutralization" value="중성화 했어요" id="Y" class="col-1"/> 했다 &nbsp;
 							<form:radiobutton path="dog_neutralization" value="중성화 안했어요" id="N" class="col-1"/> 안했다
-					<%--	<form:input path="dog_neu" class="form-control"/>		
-							<form:errors path="dog_name" style="color:red"/> --%>	
 						</div>
 						<div class="form-group pb-2">
 							<form:label path="dog_tag" class="pb-2">태그</form:label><br>
@@ -128,17 +121,14 @@
 						<div class="form-group pb-2">
 							<form:label path="dog_memo" class="pb-2">소개</form:label>
 							<form:textarea path="dog_memo" class="form-control"/>
-					<%--		<form:input path="dog_memo" class="form-control"/>
-					    <form:errors path="dog_name" style="color:red"/> --%>	
 						</div>
 						<div class="form-group pb-4">
 							<form:label path="upload_file" class="pb-2">프로필사진</form:label>
 							<form:input type="file" path="upload_file" class="form-control pb-3" accept="image/*"/>
 						</div>
 						<div class="form-group pb-2">
-							<form:label path="company_id" class="pb-2">회사이름</form:label>
-							<form:input path="company_id" class="form-control" />
-							<form:hidden path=""/>
+							<form:label path="company_loginId" class="pb-2">회사이름</form:label>
+							<form:input path="company_loginId" class="form-control" />
 						</div>
 						<!-- company값 user에서 id받고, user에서 name값 value에 뿌려주기? -->
 						
@@ -156,7 +146,7 @@
 </div>
 <!-- End -->
 
-<c:import url="/WEB-INF/views/include/bottom_info.jsp"></c:import>
+<c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
 
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>

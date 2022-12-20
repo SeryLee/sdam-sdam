@@ -55,7 +55,7 @@
 <!-- Spinner End -->
 	
 <!-- TOP MENU -->
-<c:import url="/WEB-INF/views/include/top_menu.jsp"></c:import>
+<c:import url="/WEB-INF/views/include/top_menu.jsp"/>
 
 <!-- Page Header Start -->
 <div class="container-fluid header-bg py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
@@ -89,31 +89,9 @@
 				<p><span class="text-primary me-2">#</span>테라피독(Therapy Dog)</p>
 				<h1 class="display-6 mb-0">우리는 쓰담쓰담의 <span class="text-primary">테라피독</span>입니다</h1>
 			</div>
-			
-<%-- 		<c:choose>
-				<c:when test="${usrBean.user_info eq 'Y'}">
-					<div class="col-lg-6 text-lg-end">
-						<c:url var="uptUrl" value="/board/update.do">
-							<c:param name="boardId" value="${result.boardId} " />
-						</c:url>
-						<a class="btn btn-primary py-3 px-5" href="${root}service/adddog">테라피독 등록하기</a>
-					</div>
-				</c:when>
-				<c:otherwise>
-					<div class="col-lg-6 text-lg-end">
-					</div>
-				</c:otherwise>
-			</c:choose>	 --%>
-			
- 		<%-- <c:if test="${getDogUserInfo.user_info eq 'T'}"> loginUserBean
-				<div class="col-lg-6 text-lg-end">
-					<a class="btn btn-primary py-3 px-5" href="${root}service/adddog">테라피독 등록하기</a>
-				</div>
-				 
- 			</c:if> --%>
  			
  			<div class="col-lg-6 text-lg-end">
-				<a class="btn btn-primary py-3 px-5" href="${root}service/adddog">테라피독 등록하기</a>
+				<a class="btn btn-primary py-3 px-5" href="${root}service/addDog">테라피독 등록하기</a>
 			</div> 
 		</div> 
 
@@ -273,7 +251,7 @@ $(".animal-item").on("click", function(){
 	
 	//ajax 화면에 있는 값 말고 db에 있는 값을 넣을 시, 결과값 받는 함수로 받아온 결과값을 text 넣고 모달에 띄움
 	$.ajax({
-		url : '/sdam-sdamProject/service/getdoginfo?dog_idx='+dogid,
+		url : '/sdam-sdamProject/service/getDogInfo?dog_idx='+dogid,
 		type : 'GET',
 		success : function(result){
 			$('.dog_info').html(result).show();
@@ -315,7 +293,7 @@ function logingo(){
 <!-- Animal End -->
 
 <!-- BOTTOM MENU -->
-<c:import url="/WEB-INF/views/include/bottom_info.jsp"></c:import>
+<c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
 
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
