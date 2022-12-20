@@ -64,7 +64,7 @@
 </head>
 <script>
     function checkUserIdExist() {
-        var user_id = $("#user_id").val()
+        const user_id = $("#user_id").val();
 
         if (user_id.lenght == 0) {
             alert("아이디를 입력해주세요")
@@ -91,7 +91,7 @@
     }
 
     function checkUserTelExist() {
-        var user_tel = $("#user_tel").val()
+        const user_tel = $("#user_tel").val();
 
         if (user_tel.lenght == 0) {
             alert("전화번호를 입력해주세요")
@@ -206,17 +206,17 @@
                             <div class="form-group">
                                 <form:label path="user_address">주소</form:label>
                                 <div class="input-group mb-1">
-                                    <form:input path="user_address" id="address_input"
-                                                class="form-control" readonly="true"/>
+                                    <form:hidden path="user_address" id="entireAddress"/>
+                                    <input id="address_input" class="form-control" readonly="true">
                                     <div class="input-group-append">
                                         <button type="button" class="btn btn-primary"
                                                 id="address_kakao">주소검색
                                         </button>
                                     </div>
+                                    <br/>
+                                    <input placeholder="상세주소 입력" id="detailAddress" class="form-control"
+                                           onchange="addInfoToAddress()">
                                 </div>
-                                    <form:input path="user_address" id="address_input"
-                                                class="form-control" placeholder="상세주소 입력" />
-                                    <form:errors path="user_address" style="color:red" />
                             </div>
                             <script
                                     src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -227,10 +227,15 @@
                                         new daum.Postcode({
                                             oncomplete: function (data) { //선택시 입력값 세팅
                                                 document.getElementById("address_input").value = data.address; // 주소 넣기
-                                                document.querySelector("input[id=address_detail]").focus(); //상세입력 포커싱
                                             }
                                         }).open();
                                     });
+                                }
+
+                                function addInfoToAddress() {
+                                    const address = document.getElementById("address_input").value;
+                                    const detailAddress = document.getElementById("detailAddress").value;
+                                    document.getElementById("entireAddress").value = address + ", " + detailAddress;
                                 }
                             </script>
                             <div class="form-group">

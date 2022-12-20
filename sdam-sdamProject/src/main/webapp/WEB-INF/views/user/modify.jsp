@@ -165,7 +165,7 @@
 <!-- End -->
 
 <!-- BOTTOM MENU -->
-<c:import url="/WEB-INF/views/include/bottom_info.jsp"></c:import>
+<c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
 
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>

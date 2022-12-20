@@ -4,7 +4,6 @@ import kr.co.greenapple.beans.QnaBean;
 import kr.co.greenapple.beans.UserBean;
 import kr.co.greenapple.service.UserService;
 import kr.co.greenapple.validator.UserValidator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
