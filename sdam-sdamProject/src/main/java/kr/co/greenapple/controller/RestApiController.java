@@ -9,9 +9,12 @@ import kr.co.greenapple.service.UserService;
 
 @RestController
 public class RestApiController {
-	@Autowired
-	private UserService userService;
-	
+	private final UserService userService;
+
+	public RestApiController(UserService userService) {
+		this.userService = userService;
+	}
+
 	@GetMapping("/user/checkUserIdExist/{user_id}")
 	public String checkUserIdExist(@PathVariable String user_id) {
 		boolean chk = userService.checkUserIdExist(user_id);

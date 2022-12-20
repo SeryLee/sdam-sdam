@@ -25,12 +25,15 @@ import kr.co.greenapple.service.BoardService;
 @RequestMapping("/board")
 public class BoardController {
 	
-	@Autowired
-	private BoardService boardService;
-	
+	private final BoardService boardService;
+
+	public BoardController(BoardService boardService) {
+		this.boardService = boardService;
+	}
+
 	@Resource(name = "loginUserBean")
 	@Lazy
-	private UserBean loginUserBean;	
+	private UserBean loginUserBean;
 
 	@GetMapping("/main")
 	public String main(@RequestParam("board_info_idx") int board_info_idx,

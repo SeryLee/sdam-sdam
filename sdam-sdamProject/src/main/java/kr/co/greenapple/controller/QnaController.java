@@ -24,15 +24,17 @@ import kr.co.greenapple.service.QnaService;
 @Controller
 @RequestMapping("/customer")
 public class QnaController {
-	
-	@Autowired
-	private QnaService qnaService;
-	
+
+	private final QnaService qnaService;
+
+	public QnaController(QnaService qnaService) {
+		this.qnaService = qnaService;
+	}
+
 	@Resource(name = "loginUserBean")
 	@Lazy
-	private UserBean loginUserBean;	
+	private UserBean loginUserBean;
 
-	
 	//qna main 목록 출력하기
 	@GetMapping("/qna")
 	public String main(

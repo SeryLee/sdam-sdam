@@ -23,25 +23,22 @@ import java.util.List;
 @RequestMapping("/book")
 public class BookController {
 
-	@Autowired
-	private DogService dogService;
-	
+	private final DogService dogService;
+	private final BookService bookService;
+
+	public BookController(DogService dogService, BookService bookService) {
+		this.dogService = dogService;
+		this.bookService = bookService;
+	}
 	@Resource(name="dogBean")
 	@Lazy
 	private DogBean dogBean;
-	
-	@Autowired
-	private BookService bookService;
+
 
 	@Resource(name="loginUserBean")
 	@Lazy
 	private UserBean loginUserBean;
-	
-//	@Resource(name="bookParamBean")
-//	@Lazy
-//	private BookBean bookParamBean;
 
-	
 	@GetMapping("/book")
 	public String book(Pager dogBookPager, Model model) {
 		
@@ -54,9 +51,7 @@ public class BookController {
 	
 	@GetMapping("/showdog")
 	public String showDog(Pager dogBookPager,
-//			@RequestParam(defaultValue = "") String company_local,
-//			@RequestParam(defaultValue = "") String service_date,
-//			@RequestParam(defaultValue = "") String dog_tag,
+
 			BookBean bookBean,
 			Model model) {
 		

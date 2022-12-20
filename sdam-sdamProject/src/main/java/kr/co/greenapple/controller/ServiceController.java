@@ -19,20 +19,22 @@ import java.util.List;
 @RequestMapping("/service")
 public class ServiceController {
 	
-	@Autowired
-	private DogService dogService;
-	
-	@Autowired
-	private UserService userService;
-	
+	private final DogService dogService;
+	private final UserService userService;
+
+	public ServiceController(DogService dogService, UserService userService) {
+		this.dogService = dogService;
+		this.userService = userService;
+	}
+
 	@Resource(name="dogBean")
 	@Lazy
 	private DogBean dogBean;
-	
+
 	@Resource(name = "loginUserBean")
 	@Lazy
 	private UserBean loginUserBean;
-	
+
 	//테라피독
 	@GetMapping("/therapydog")
 	public String therapydog(
