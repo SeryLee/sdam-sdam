@@ -153,44 +153,16 @@ public class UserController {
 
 		return "user/user_del";
 	}
-	
-	@PostMapping("/mydelete_pro")
-	public String mydelete_pro() {
-//		if(result.hasErrors()) {
-//			return "user/user_del";
-//		}		
-//		userService.modifyUserInfo(modifyUserBean);
-		return "user/userdel_success";
-	}
-	
-	//마이페이지
-//		@GetMapping("/modify")
-//		public String modify(@ModelAttribute("modifyUserBean") UserBean modifyUserBean) {
-//			userService.getModifyUserInfo(modifyUserBean);
-//			return "user/modify";
-//		}
-		
-//		@PostMapping("/modify_pro")
-//		public String modify_pro(@Valid @ModelAttribute("modifyUserBean") UserBean modifyUserBean, BindingResult result) {
-//			if(result.hasErrors()) {
-//				return "user/modify";
-//			}		
-//			userService.modifyUserInfo(modifyUserBean);
-//			return "user/modify_success";
-//		}
-	
-	
-	
-	
-	//MemDelServlet
-//	@RequestMapping(value = "/member/del.do", method = RequestMethod.GET)
-//	public String del(String memId) {
 
-		//String memId = req.getParameter("memId"); //전송되어 온 파라미터 값을 꺼내서 String 변수로 받아
-//		int num = memberService.delMember(memId); //받은걸 db에서 삭제하고, 받은 갯수를 화면에 출력하기 위해 변수로 받아
-			
-		//2)list를 보여준다
-//		return "redirect:/member/list.do";
-//	}
-	
+	@PostMapping("/my_delete_pro")
+	public String my_delete_pro(@ModelAttribute("deleteUserBean") UserBean deleteUserBean, HttpServletRequest request) {
+
+		int deleteSuccess = userService.deleteUserInfo(deleteUserBean);
+		if(deleteSuccess > 0) {
+			request.getSession().invalidate();
+			return "user/delete_success";
+		} else {
+			return "user/delete_fail";
+		}
+	}
 }

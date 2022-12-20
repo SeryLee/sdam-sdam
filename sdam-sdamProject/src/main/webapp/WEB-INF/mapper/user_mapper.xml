@@ -43,6 +43,14 @@
 			where user_idx = #{user_idx}
 		]]>
 	</select>
+
+	<select id="getDeleteUserInfo" parameterType="java.lang.Integer" resultType="kr.co.greenapple.beans.UserBean">
+		<![CDATA[
+		select user_idx, user_id, user_name, user_pw
+		from user_table
+		where user_idx = #{user_idx}
+		]]>
+	</select>
 	
 	<update id="modifyUserInfo" parameterType="kr.co.greenapple.beans.UserBean">
 		<![CDATA[
@@ -125,11 +133,12 @@
 			order by qna_idx
 		]]>
 	</select>
-	
-	
-	
-	
-<!-- <delete id="delMember" parameterType="java.lang.String">
-  		delete from member where mem_id = #{memId}
-  	</delete> -->
+
+	<delete id="deleteUserInfo" parameterType="kr.co.greenapple.beans.UserBean">
+		<![CDATA[
+		delete
+		from user_table
+		where user_id=#{user_id} and user_pw=#{user_pw}
+		]]>
+	</delete>
 </mapper>

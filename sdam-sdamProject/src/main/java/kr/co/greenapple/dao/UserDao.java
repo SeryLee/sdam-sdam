@@ -68,4 +68,13 @@ public class UserDao {
 		return sqlSessionTemplate.selectList("user.myQnaBoard", user_idx);
 	}
 
+	public int deleteUserInfo(UserBean deleteUserBean) {
+		int num = 0;
+		num = sqlSessionTemplate.delete("user.deleteUserInfo", deleteUserBean);
+		return num;
+	}
+
+	public UserBean getDeleteUserInfo(int userIdx) {
+		return sqlSessionTemplate.selectOne("user.getDeleteUserInfo", userIdx);
+	}
 }
