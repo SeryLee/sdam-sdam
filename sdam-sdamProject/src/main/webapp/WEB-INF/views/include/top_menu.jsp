@@ -28,8 +28,8 @@
 									</c:when>
 									<c:otherwise>
 										<i class="bi bi-person-circle"></i> &nbsp;<c:if test="${not empty loginUserBean.user_info}">테라피스트</c:if> <c:out value="${loginUserBean.user_name}" />님 &nbsp;&nbsp;&nbsp;
-										<a role="button" href="${root}/user/modify" class="btn btn-outline-warning ms-2">마이페이지</a>
-										<a role="button" href="${root}/user/logout" class="btn btn-outline-warning ms-2">로그아웃</a>
+										<a role="button" href="${root}user/modify" class="btn btn-outline-warning ms-2">마이페이지</a>
+										<a role="button" href="${root}user/logout" class="btn btn-outline-warning ms-2">로그아웃</a>
 									</c:otherwise>
 								</c:choose>
 						</c:when>

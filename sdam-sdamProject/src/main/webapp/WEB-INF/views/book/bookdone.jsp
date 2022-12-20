@@ -118,7 +118,7 @@
 		
 		
 			<div class="text-center mb-5">
-				<button type="button" class="btn btn-primary btn-lg" onclick="location.href='${root}user/myservice'">내 예약 확인하기</button>
+				<button type="button" class="btn btn-primary btn-lg" onclick="location.href='${root}user/my_service'">내 예약 확인하기</button>
 			</div>
 		</div>
 	</div>

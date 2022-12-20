@@ -305,7 +305,7 @@ CREATE TABLE qna_table (
                            qna_subject VARCHAR(500) NOT NULL, -- qna제목
                            qna_content LONG VARCHAR NULL,     -- qna내용
                            qna_date    DATE         NULL,     -- qna작성일
-                           user_idx    INTEGER      NOT NULL  -- 회원PK
+                           qna_writer_idx    INTEGER      NOT NULL  -- 회원PK
 );
 
 -- qna_table 기본키
@@ -327,7 +327,7 @@ ALTER TABLE qna_table
     ADD
         CONSTRAINT FK_user_table_TO_qna_table -- user_table -> qna_table
             FOREIGN KEY (
-                         user_idx -- 회원PK
+                         qna_writer_idx -- 회원PK
                 )
                 REFERENCES user_table ( -- user_table
                                        user_idx -- 회원PK

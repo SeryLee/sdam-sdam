@@ -55,19 +55,6 @@
 <!-- TOP MENU -->
 <c:import url="/WEB-INF/views/include/top_menu.jsp"></c:import>
 
-<!-- Start -->
-<%-- <div class="container">
-	<div class="row g-5 mb-5 align-items-end wow fadeInUp" data-wow-delay="0.1s">
-		<div class="col-lg-6" >
-			<p><span class="text-primary me-2">#</span>마이페이지(My Page)</p>
-			<h1 class="display-6 mb-0">우리는 쓰담쓰담의 <span class="text-primary">테라피독</span>입니다</h1>
-		</div>
-		<div class="col-lg-6 text-lg-end">
-			<a class="btn btn-primary py-3 px-5" href="${root}service/adddog">테라피독 등록하기</a>
-		</div>
-	</div>
-</div> --%>
-
 <div class="container-fluid header-bg py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
 	<div class="container py-5">
 		<h1 class="display-4 text-white mb-3 animated slideInDown">
@@ -98,9 +85,9 @@
 				<div class="navbar-nav">
 					<div class="nav-item dropdown">
 						<a class="nav-item nav-link" href="${root }user/modify" style="padding:10px 0;">회원정보</a>
-						<a class="nav-item nav-link" href="${root }user/myservice" style="padding:10px 0;">예약관리</a>
-						<a class="nav-item nav-link" href="${root }user/myboard" style="padding:10px 0;">게시물관리</a>
-						<a class="nav-item nav-link" href="${root }user/mydelete" aria-current="page" style="padding:0 0 10px 0;"><span class="text-primary me-2">#</span> 회원탈퇴</a> 
+						<a class="nav-item nav-link" href="${root }user/my_service" style="padding:10px 0;">예약관리</a>
+						<a class="nav-item nav-link" href="${root }user/my_board" style="padding:10px 0;">게시물관리</a>
+						<a class="nav-item nav-link" href="${root }user/my_delete" aria-current="page" style="padding:0 0 10px 0;"><span class="text-primary me-2">#</span> 회원탈퇴</a>
 					</div>
 				</div>
 			</div>
@@ -109,7 +96,6 @@
 	</div>
 	
 	<div class="col-lg-9 bg-white card shadow">  
-<!--<div class="owl-carousel testimonial-carousel wow fadeInUp text-center" data-wow-delay="0.1s"> -->
 		<div class="testimonial-item">
 			<div class="mt-4 mb-1 ms-5 wow fadeInUp">
 				<img class="img-fluid rounded-circle border border-2 p-2 mx-auto mb-3" src="../image/testimonial-1.jpg" style="width: 100px; height: 100px; display:inline-block;"/> &nbsp;&nbsp;
@@ -117,13 +103,10 @@
 			</div>
 			
 			<div class="testimonial-text rounded p-4 ms-4">	
-				<form:form action="${root }user/mydelete_pro" method="post" modelAttribute="">
-					<!-- disabled는 제출 후 값이 전송되지 않기 때문에 수정에 실패했을 때 원래의 값이 사라짐 -->
-					<!-- 반면, readonly는 제출 후에도 값이 전송되는 이점이 있음 -->
+				<form:form action="${root }user/my_delete_pro" method="post" modelAttribute="deleteUserBean">
 					<div class="form-group mb-4">
 						<form:label path="user_id" class="pb-2">아이디</form:label>
 						<form:input path="user_id" class="form-control" readonly="true"/>
-				<%--    <form:errors path="dog_name" style="color:red"/> --%>	
 					</div>
 					<div class="form-group mb-4">
 						<form:label path="user_pw" class="pb-2">비밀번호</form:label>
@@ -133,7 +116,7 @@
 						
 					<div class="form-group mb-3">
 						<div class="text-end pb-2">
-							<form:button class="btn btn-outline-warning px-5 py-2 mb-3 fst-italic">회원정보수정</form:button>
+							<form:button class="btn btn-outline-warning px-5 py-2 mb-3 fst-italic">회원탈퇴</form:button>
 						</div>
 					</div>
 				</form:form>				
