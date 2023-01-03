@@ -20,37 +20,20 @@ public class QnaService {
 	@Value("${path.upload}")
 	private String path_upload;
 	
-	@Value("${page.listcnt}")
-	private int page_listcnt;
+	@Value("${page.list.cnt}")
+	private int page_list_cnt;
 	
-	@Value("${page.paginationcnt}")
-	private int page_paginationcnt;
+	@Value("${page.pagination.cnt}")
+	private int page_pagination_cnt;
 	
 	@Autowired
 	private QnaDao qnaDao;
 	
 	@Resource(name = "loginUserBean")
 	@Lazy
-	private UserBean loginUserBean;	
-	
-//	private String saveUloadFile(MultipartFile upload_file) {
-//		String file_name = System.currentTimeMillis() + "_" + upload_file.getOriginalFilename();
-//		
-//		try {
-//			upload_file.transferTo(new File(path_upload + "/" + file_name));
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}
-//		return file_name;
-//	}
+	private UserBean loginUserBean;
 	
 	public void addQna(QnaBean writeQnaBean) {
-//		MultipartFile upload_file = writeQnaBean.getUpload_file();
-		
-//		if(upload_file.getSize() > 0) {
-//			String file_name = saveUloadFile(upload_file);
-//			writeQnaBean.setContent_file(file_name);
-//		}
 		
 		writeQnaBean.setQna_writer_idx(loginUserBean.getUser_idx());
 		
@@ -69,14 +52,6 @@ public class QnaService {
 	}
 	
 	public void modifyQnaInfo(QnaBean modifyQnaBean) {
-		/*
-		 * MultipartFile upload_file = modifyQnaBean.getUpload_file();
-		 * 
-		 * if(upload_file.getSize() > 0) { String file_name =
-		 * saveUloadFile(upload_file); modifyQnaBean.setContent_file(file_name); }
-		 */
-//		System.out.println(modifyQnaBean);
-		
 		qnaDao.modifyQnaInfo(modifyQnaBean);
 	}
 	

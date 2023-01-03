@@ -25,11 +25,11 @@ public class BoardService {
 	@Value("${path.upload}")
 	private String path_upload;
 	
-	@Value("${page.listcnt}")
-	private int page_listcnt;
+	@Value("${page.list.cnt}")
+	private int page_list_cnt;
 	
-	@Value("${page.paginationcnt}")
-	private int page_paginationcnt;
+	@Value("${page.pagination.cnt}")
+	private int page_pagination_cnt;
 	
 	@Autowired
 	private BoardDao boardDao;
@@ -68,8 +68,8 @@ public class BoardService {
 	
 	public List<ContentBean> getContentList(int board_info_idx, int page) {
 		
-		int start = (page - 1) * page_listcnt;
-		RowBounds rowBounds = new RowBounds(start, page_listcnt);
+		int start = (page - 1) * page_list_cnt;
+		RowBounds rowBounds = new RowBounds(start, page_list_cnt);
 		
 		return boardDao.getContentList(board_info_idx, rowBounds);
 		
@@ -98,7 +98,7 @@ public class BoardService {
 		
 		int content_cnt = boardDao.getContentCnt(content_board_idx);
 		
-		PageBean pageBean = new PageBean(content_cnt, currentPage, page_listcnt, page_paginationcnt);
+		PageBean pageBean = new PageBean(content_cnt, currentPage, page_list_cnt, page_pagination_cnt);
 		
 		return pageBean;
 	}

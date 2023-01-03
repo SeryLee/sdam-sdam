@@ -7,7 +7,7 @@ import kr.co.greenapple.beans.UserBean;
 import kr.co.greenapple.pager.Pager;
 import kr.co.greenapple.service.BookService;
 import kr.co.greenapple.service.DogService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +20,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
+@Slf4j
 @RequestMapping("/book")
 public class BookController {
 
@@ -30,10 +31,6 @@ public class BookController {
 		this.dogService = dogService;
 		this.bookService = bookService;
 	}
-	@Resource(name="dogBean")
-	@Lazy
-	private DogBean dogBean;
-
 
 	@Resource(name="loginUserBean")
 	@Lazy
@@ -49,28 +46,22 @@ public class BookController {
 		return "book/book";
 	}	
 	
-	@GetMapping("/showdog")
-	public String showDog(Pager dogBookPager,
-
-			BookBean bookBean,
-			Model model) {
+	@GetMapping("/showDog")
+	public String showDog(Pager dogBookPager, BookBean bookBean, Model model) {
 		
 		List<DogBean> dogBookList = dogService.getDogs(dogBookPager);
 		
 		model.addAttribute("user_idx",loginUserBean.getUser_idx() );
 		model.addAttribute("dogBookList", dogBookList);
-		
-		
-		System.out.println(bookBean.getCompany_local());
-		System.out.println(bookBean.getService_date());
-		System.out.println(bookBean.getDog_tag());
-		
-		//String을
-		
+
+		log.info(bookBean.getCompany_local());
+		log.info(bookBean.getService_date());
+		log.info(bookBean.getDog_tag().toString());
+
 		List<BookBean> showDogList = bookService.showDog(bookBean);
 		
 		for(BookBean bb : showDogList) {
-		 	System.out.println(bb.getDog_idx()); 
+			log.info(String.valueOf(bb.getDog_idx()));
 		}
 		
 		model.addAttribute("dogBookList", showDogList);
@@ -88,28 +79,20 @@ public class BookController {
 	@PostMapping("/book")
 	public String addbook(BookBean bookBean, BindingResult bindingResult) {
 		
-		
-		
 		//넘어오는 값
-		System.out.println("============= 신청서 ============");
-		System.out.println("신청자idx: "+ bookBean.getUser_idx());
-		System.out.println("지역: "+ bookBean.getCompany_local());
-	    System.out.println("테라피독idx: "+ bookBean.getDog_idx());
-	    System.out.println("날짜: "+ bookBean.getService_date());
-	    System.out.println("시간: "+ bookBean.getService_time());
-	    System.out.println("================================");
-		
-		
-		
-		
+		log.info(String.valueOf(bookBean.getUser_idx()));
+		log.info(bookBean.getCompany_local());
+		log.info(String.valueOf(bookBean.getDog_idx()));
+		log.info(bookBean.getService_date());
+		log.info(bookBean.getService_time());
+
 		if(bindingResult.hasErrors()) {
 			if(bookBean.getService_time()==null) {
 				return "book/book";
 			}
 			return "book/book";
 		}
-		
-		
+
 		bookService.addBook(bookBean);
 		return "book/bookdone";
 	}

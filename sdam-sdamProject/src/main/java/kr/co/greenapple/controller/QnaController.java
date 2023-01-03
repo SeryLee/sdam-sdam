@@ -37,11 +37,7 @@ public class QnaController {
 
 	//qna main 목록 출력하기
 	@GetMapping("/qna")
-	public String main(
-//			QnaBean qnaBean,
-//			@RequestParam(value = "page", defaultValue = "1") int page,
-			Pager QnaPager,
-			Model model) {
+	public String main(Pager QnaPager, Model model) {
 		
 		List<QnaBean> qnaList = qnaService.getQnaList(QnaPager);
 		model.addAttribute("qnaList", qnaList);
@@ -103,10 +99,6 @@ public class QnaController {
 	public String modify_pro(@Valid @ModelAttribute("modifyQnaBean") QnaBean modifyQnaBean,
 			BindingResult result, Model model) {
 		
-//		for (ObjectError e : result.getAllErrors()) {
-//			System.out.println(e.getDefaultMessage());
-//		}
-		
 		if(result.hasErrors()) {
 			return "customer/qna_modify";
 		}
@@ -115,25 +107,6 @@ public class QnaController {
 		
 		return "customer/qna_modify_success";
 	}
-	
-
-	/*
-	public String modify_pro(@Valid @ModelAttribute("modifyContentBean") ContentBean modifyContentBean, BindingResult result,
-			@RequestParam("page") int page,
-			Model model) {
-		
-		model.addAttribute("page", page);
-		
-		if(result.hasErrors()) {
-			return "board/modify";
-		}
-				
-		boardService.modifyContentInfo(modifyContentBean);
-		
-		return "board/modify_success";
-	}
-	*/
-	
 
 	@GetMapping("/delete")
 	public String delete(@RequestParam("qna_idx") int qna_idx, Model model) {
