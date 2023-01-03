@@ -53,7 +53,7 @@
 <!-- Spinner End -->
 
 <!-- TOP MENU -->
-<c:import url="/WEB-INF/views/include/top_menu.jsp"></c:import>
+<c:import url="/WEB-INF/views/include/top_menu.jsp"/>
 
 	<!-- Header Start -->
 	<div class="container-fluid bg-dark p-0 mb-5">
@@ -64,8 +64,6 @@
 					<h1 class="display-4 text-light mb-5">내 주변 테라피독과 만나기</h1>
 					<div class="d-flex align-items-center pt-4 animated slideInDown">
 						<div class="position-relative" style="max-width: 285px; margin-bottom: 10px">
-									<!-- <input class="form-control border-0 w-100 py-3 ps-4 pe-5"
-										type="text" placeholder="원하는 지역을 검색하세요" /> -->
 							<div class="d-sm-inline-block">
 								<select id="sel-local" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
 								  <option selected>원하는 지역을 선택하세요</option>
@@ -86,7 +84,6 @@
 								</select>
 							</div>
 							<div class=" d-sm-inline-block" style="float:right">
-								<%-- <a href="${root }book/book?company_local=${company.company_local}"></a> --%>
 								<button type="button" id="btn-search-local" class="btn btn-primary py-2 position-absolute h-75 top-0 mt-0 me-2 ">
 								<i class="bi bi-search"></i></button>
 							</div>

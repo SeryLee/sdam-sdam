@@ -37,8 +37,8 @@ public class AdminService {
 	}
 
 	//admin user 탈퇴
-	public void AdmindeleteUser(int user_idx) {
-		adminDao.AdmindeleteUser(user_idx);
+	public void AdminDeleteUser(int user_idx) {
+		adminDao.AdminDeleteUser(user_idx);
 	}
 
 	//admin 예약 목록 관리

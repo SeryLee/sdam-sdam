@@ -13,9 +13,12 @@ import kr.co.greenapple.pager.Pager;
 @Repository
 public class UserDao {
 
-	@Autowired
-	private SqlSessionTemplate sqlSessionTemplate;
- 	
+	private final SqlSessionTemplate sqlSessionTemplate;
+
+	public UserDao(SqlSessionTemplate sqlSessionTemplate) {
+		this.sqlSessionTemplate = sqlSessionTemplate;
+	}
+
 	public String checkUserIdExist(String user_id) {
 		return sqlSessionTemplate.selectOne("user.checkUserIdExist", user_id);  
 	}

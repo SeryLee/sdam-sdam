@@ -22,26 +22,14 @@ public class CustomerController {
 		//고객센터
 		@GetMapping("/faq")
 		public String faq() {
-
 			return "customer/faq";
 		}
 
 		
 		
 		@GetMapping("/adopt")
-		public String adoptWrite(
-//				@ModelAttribute("customerBean") CustomerBean customerBean
-				) {
+		public String adoptWrite() {
 			return "customer/adopt";
 		}
-//		
-//		@PostMapping("/adoptdone") //form action에서 요청받았을 때 수행될 controller
-//		public String adoptWriteDone(@Valid @ModelAttribute("customerBean") CustomerBean customerBean, BindingResult result) {
-//			if(result.hasErrors()) {
-//				return "customer/adopt";
-//			}
-//			return "customer/adopt_success";
-//		}
-		
-		
+
 }

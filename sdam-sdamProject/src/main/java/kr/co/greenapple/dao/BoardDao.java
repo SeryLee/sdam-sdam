@@ -12,8 +12,11 @@ import kr.co.greenapple.beans.ContentBean;
 @Repository
 public class BoardDao {
 
-	@Autowired
-	private SqlSessionTemplate sqlSessionTemplate;
+	private final SqlSessionTemplate sqlSessionTemplate;
+
+	public BoardDao(SqlSessionTemplate sqlSessionTemplate) {
+		this.sqlSessionTemplate = sqlSessionTemplate;
+	}
 
 	public void addContentInfo(ContentBean writeContentBean) {
 			sqlSessionTemplate.insert("board.addContentInfo", writeContentBean);			

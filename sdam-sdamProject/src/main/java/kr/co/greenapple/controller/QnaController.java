@@ -84,9 +84,7 @@ public class QnaController {
 	
 	
 	@GetMapping("/modify")
-	public String modify(
-//			@ModelAttribute("modifyQnaBean") QnaBean modifyBean,
-			@RequestParam("qna_idx") int qna_idx, Model model) {
+	public String modify(@RequestParam("qna_idx") int qna_idx, Model model) {
 		
 		
 		QnaBean modifyBean = qnaService.modifyQna(qna_idx);

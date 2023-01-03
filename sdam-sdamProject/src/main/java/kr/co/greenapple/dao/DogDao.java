@@ -13,9 +13,12 @@ import kr.co.greenapple.pager.Pager;
 @Repository
 public class DogDao {
 
-	@Autowired
-	private SqlSessionTemplate sqlSessionTemplate;
- 	
+	private final SqlSessionTemplate sqlSessionTemplate;
+
+	public DogDao(SqlSessionTemplate sqlSessionTemplate) {
+		this.sqlSessionTemplate = sqlSessionTemplate;
+	}
+
 	public void addDog(DogBean dogBean) {
 		sqlSessionTemplate.insert("dog.addDog", dogBean);
 	}
@@ -25,13 +28,7 @@ public class DogDao {
 		return sqlSessionTemplate.selectOne("dog.getUserInfo", loginUserBean);
 	}
 
-	//테라피독 불러오기
-//	public List<DogBean> getDogs() {
-//		return sqlSessionTemplate.selectList("dog.getDogs");
-//	}
-
 	public List<DogBean> getDogs(Pager dogPager) {
-
 		return sqlSessionTemplate.selectList("dog.getDogs", dogPager);
 	}
 	
@@ -42,6 +39,5 @@ public class DogDao {
 	public DogBean modalDogs(int dog_idx) {
 		return sqlSessionTemplate.selectOne("dog.modalDogs", dog_idx);
 	}
-	
 
 }

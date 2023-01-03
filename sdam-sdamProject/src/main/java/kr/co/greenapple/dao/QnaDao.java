@@ -14,10 +14,8 @@ import kr.co.greenapple.beans.QnaBean;
 
 @Repository
 public class QnaDao {
-
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-	
 	
 	public List<QnaBean> getQnaList(Pager qnaPager) {
 		 return sqlSessionTemplate.selectList("qna.getQnaList", qnaPager);

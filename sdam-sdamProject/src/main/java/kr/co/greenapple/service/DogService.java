@@ -56,11 +56,6 @@ public class DogService {
 	public UserBean getUserInfo(UserBean loginUserBean) {
 		return dogDao.getUserInfo(loginUserBean);
 	}
-
-	//테라피독 불러오기
-//	public List<DogBean> getDogs() {
-//		return dogDao.getDogs();
-//	}
 	
 	public List<DogBean> getDogs(Pager dogPager) {
 		int total = dogDao.total(dogPager);

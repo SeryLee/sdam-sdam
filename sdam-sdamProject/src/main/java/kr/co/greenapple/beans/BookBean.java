@@ -17,7 +17,7 @@ public class BookBean {
 	private String user_id;
 	private int dog_idx;
 	private String company_local;
-	private List<String> dog_tag = new ArrayList<String>();
+	private List<String> dog_tag = new ArrayList<>();
 	private String dog_name;
 	private String dog_picture;
 

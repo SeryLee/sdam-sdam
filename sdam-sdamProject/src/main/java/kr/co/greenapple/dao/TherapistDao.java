@@ -9,9 +9,12 @@ import kr.co.greenapple.beans.UserBean;
 @Repository
 public class TherapistDao {
 
-	@Autowired
-	private SqlSessionTemplate sqlSessionTemplate;
- 	
+	private final SqlSessionTemplate sqlSessionTemplate;
+
+	public TherapistDao(SqlSessionTemplate sqlSessionTemplate) {
+		this.sqlSessionTemplate = sqlSessionTemplate;
+	}
+
 //	public String checkUserIdExist(String user_id) {
 //		return sqlSessionTemplate.selectOne("user.checkUserIdExist", user_id);  
 //	}

@@ -11,8 +11,11 @@ import kr.co.greenapple.beans.BoardInfoBean;
 @Repository
 public class TopMenuDao {
 
-	@Autowired
-	private SqlSessionTemplate sqlSessionTemplate;
+	private final SqlSessionTemplate sqlSessionTemplate;
+
+	public TopMenuDao(SqlSessionTemplate sqlSessionTemplate) {
+		this.sqlSessionTemplate = sqlSessionTemplate;
+	}
 
 	public List<BoardInfoBean> getTopMenuList(){
 		List<BoardInfoBean> topMenuList = sqlSessionTemplate.selectList("topmenu.get_topmenu_list");

@@ -11,9 +11,12 @@ import kr.co.greenapple.beans.BookBean;
 @Repository
 public class BookDao {
 
-	@Autowired
-	private SqlSessionTemplate sqlSessionTemplate;
-	
+	private final SqlSessionTemplate sqlSessionTemplate;
+
+	public BookDao(SqlSessionTemplate sqlSessionTemplate) {
+		this.sqlSessionTemplate = sqlSessionTemplate;
+	}
+
 	public void addBook(BookBean bookBean) {
 		sqlSessionTemplate.insert("book.addBook", bookBean);	
 	}

@@ -4,7 +4,6 @@ import kr.co.greenapple.beans.BookBean;
 import kr.co.greenapple.beans.UserBean;
 import kr.co.greenapple.pager.Pager;
 import kr.co.greenapple.service.AdminService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,10 +28,6 @@ public class AdminController {
 	@Lazy
 	private UserBean loginUserBean;
 
-	@Resource(name = "bookBean")
-	@Lazy
-	private BookBean bookBean;
-
 
 	//admin user List 출력
 	@GetMapping("/user")
@@ -49,7 +44,7 @@ public class AdminController {
 	@GetMapping("/userdelete")
 	public String AdmindeleteUser(@RequestParam("user_idx") int user_idx, Model model) {
 		
-		adminService.AdmindeleteUser(user_idx);
+		adminService.AdminDeleteUser(user_idx);
 		model.addAttribute(user_idx);
 		
 		return "admin/user_delete";

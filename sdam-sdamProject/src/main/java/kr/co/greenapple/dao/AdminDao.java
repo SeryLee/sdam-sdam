@@ -3,7 +3,6 @@ package kr.co.greenapple.dao;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.greenapple.beans.BookBean;
@@ -13,10 +12,12 @@ import kr.co.greenapple.pager.Pager;
 @Repository
 public class AdminDao {
 
-	@Autowired
-	private SqlSessionTemplate sqlSessionTemplate;
- 	
-	
+	private final SqlSessionTemplate sqlSessionTemplate;
+
+	public AdminDao(SqlSessionTemplate sqlSessionTemplate) {
+		this.sqlSessionTemplate = sqlSessionTemplate;
+	}
+
 	public List<UserBean> getAdminUserList(Pager userPager) {
 		return sqlSessionTemplate.selectList("admin.getAdminUserList", userPager);
 	}
@@ -25,8 +26,8 @@ public class AdminDao {
 		return sqlSessionTemplate.selectOne("admin.userTotal", userPager);
 	}
 
-	public void AdmindeleteUser(int user_idx) {
-		sqlSessionTemplate.selectList("admin.AdmindeleteUser", user_idx);
+	public void AdminDeleteUser(int user_idx) {
+		sqlSessionTemplate.selectList("admin.AdminDeleteUser", user_idx);
 	}
 
 	public List<BookBean> getAdminUserBook(Pager bookPager) {

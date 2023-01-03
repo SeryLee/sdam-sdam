@@ -20,7 +20,7 @@
 		SELECT COUNT(*) FROM user_table
 	</select>
 	
-	<delete id="AdmindeleteUser" parameterType="java.lang.Integer">
+	<delete id="AdminDeleteUser" parameterType="java.lang.Integer">
 		<![CDATA[
 			delete from user_table where user_idx = #{user_idx}
 		]]>
