@@ -15,8 +15,8 @@
 		
 		<![CDATA[
 			insert into therapy_dog_table
-			(dog_idx, dog_name, dog_type, dog_age, dog_sex, DOG_NEUTRALIZATION, dog_memo, dog_picture, dog_tag, company_id)
-			values (#{dog_idx}, #{dog_name}, #{dog_type}, #{dog_age}, #{dog_sex}, #{dog_neutralization}, #{dog_memo}, #{dog_picture, jdbcType=VARCHAR}, #{dog_tag}, #{company_id})
+			(dog_idx, dog_name, dog_type, dog_age, dog_sex, DOG_NEUTRALIZATION, dog_memo, dog_picture, dog_tag, company_id, dog_region)
+			values (#{dog_idx}, #{dog_name}, #{dog_type}, #{dog_age}, #{dog_sex}, #{dog_neutralization}, #{dog_memo}, #{dog_picture, jdbcType=VARCHAR}, #{dog_tag}, #{company_id}, #{dog_region})
 		]]>
 	</insert>
 	<!-- mybatis 사용 시, NULL허용 컬럼에 NULL이 들어갈 시 오류가 나지 않게 => jdbcType=VARCHAR -->
@@ -34,7 +34,7 @@
 		<![CDATA[
 			select * from
 			(select T1.*, rownum rnum from
-				(select d.dog_idx, d.dog_name, d.dog_type, d.dog_age, d.dog_sex, d.dog_neutralization, d.dog_memo, d.dog_picture, d.dog_tag, c.company_local
+				(select d.dog_idx, d.dog_name, d.dog_type, d.dog_age, d.dog_sex, d.dog_neutralization, d.dog_memo, d.dog_picture, d.dog_tag, d.dog_region
 					from therapy_dog_table d, company_table c where c.company_id = d.company_id order by d.dog_idx desc) T1)
 			where rnum between ((#{page}-1) * #{perPage} + 1) and (#{page} * #{perPage})
 		]]>

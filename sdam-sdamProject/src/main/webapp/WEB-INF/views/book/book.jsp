@@ -407,7 +407,7 @@
         console.log('시간' + service_date);
 
         $.ajax({
-            url: '${pageContext.request.contextPath}/book/showdog',
+            url: '${pageContext.request.contextPath}/book/showDog',
             method: "get",
             data: $(document.forms.form).serialize(),
             success: function (html) {
@@ -420,32 +420,10 @@
     $(window).ready(function () {
         //지역선택시 강아지 선택하기
         $('[name="company_local"], #result1, [name="dog_tag"]').on("click", function () {
-            //상기의 loadDogs function을 불러와서 click이벤트 발생 시 실행함
+            //상기의 loadDogs function 을 불러와서 click 이벤트 발생 시 실행함
             loadDogs()
 
         });
-
-
-        //현재날짜 계산해서 이전 날짜는 alert창 띄우기
-        $('#result1').on('click', function () {
-
-            var today = new Date();
-
-            var year = today.getFullYear();
-            var month = ('0' + (today.getMonth() + 1)).slice(-2);
-            var day = ('0' + today.getDate()).slice(-2);
-
-            var dateString = year + '-' + month + '-' + day;
-
-            if ($('#result1').val() < dateString) {
-                alert(dateString + " 이후의 날짜를 선택해주세요");
-                result1.value = "예약 희망일";
-                rome(inline_cal, {date: false});
-                return false;
-            }
-        });
-
-
     });
 
 
@@ -498,9 +476,18 @@
         rome(inline_cal, {
             time: false, inputFormat: 'YYYY-MM-DD'
             , dateValidator: function (d) {
-                var m = rome.moment(d);
-                var today = m.date();
-                return m.isAfter(today);
+                let m = rome.moment(d);
+                let y = m.year();
+                let f = 'MM-DD';
+                let today = new Date();
+                let month = ('0' + (today.getMonth() + 1)).slice(-2);
+                let oneMonthLater = ('0' + (today.getMonth() + 2)).slice(-2);
+                let day = ('0' + today.getDate()).slice(-2);
+                let todayString =  month + '-' + day;
+                let oneMonthLaterString = oneMonthLater + '-' + day;
+                let start = rome.moment(oneMonthLaterString, f).year(y).startOf('day');
+                let end = rome.moment(todayString, f).year(y).endOf('day');
+                return m.isAfter(end) && m.isBefore(start);
             }
         }).on('data', function (value) {
             result1.value = value;

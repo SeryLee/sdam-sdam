@@ -5,6 +5,8 @@ import kr.co.greenapple.beans.UserBean;
 import kr.co.greenapple.pager.Pager;
 import kr.co.greenapple.service.DogService;
 import kr.co.greenapple.service.UserService;
+import kr.co.greenapple.validator.FileValidator;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,21 +16,18 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/service")
 public class ServiceController {
 	
 	private final DogService dogService;
 	private final UserService userService;
-
-	public ServiceController(DogService dogService, UserService userService) {
-		this.dogService = dogService;
-		this.userService = userService;
-	}
+	private final FileValidator fileValidator;
 
 	//테라피독
 	@GetMapping("/therapydog")
 	public String therapydog(Pager dogPager, Model model) {
-		
+		// TODO : 테라피독 출력 기능 -> 태그, 지역 선택에 따라 선택 출력되도록 수정
 		List<DogBean> list = dogService.getDogs(dogPager);
 		model.addAttribute("dogList", list);
 				
@@ -56,9 +55,11 @@ public class ServiceController {
 	
 	@PostMapping("/addDog_pro")
 	public String addDog_pro(@Valid @ModelAttribute("dogBean") DogBean dogBean, BindingResult result) {
+		fileValidator.validate(dogBean, result);
 		if(result.hasErrors()) {
 			return "service/addDog";
 		}
+		// TODO : 로그인 유저 회원 구분하여 회사 or 테라피스트일 경우에만 등록(interceptor) (회원 구분 enum 구현)
 		dogService.addDog(dogBean);
 		return "service/addDog_success";
 	}
@@ -91,8 +92,5 @@ public class ServiceController {
 		
 		return "service/therapistdetail";
 	}
-	
-	
-
 
 }

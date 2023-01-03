@@ -150,38 +150,20 @@
 		
 		<div class="row pt-4">		
 			<div class="wow fadeInUp" data-wow-delay="0.2s" style="display:flex; flex-direction:row; flex-wrap:wrap;">
-			
-				
-				<!-- <div class="row g-4"> -->
 				<c:forEach var="obj" items="${dogList}">
 					<div class="col col-lg-4 col-md-6 px-3 py-3">
 						<a class="animal-item" data-dog-id="${obj.dog_idx}" href="#">
 							<div class="position-relative">
 							<img class="img-fluid dimg" src="${root }upload/${obj.dog_picture}" alt="테라피독 ${obj.dog_name}" width="100%"/>
 								<div class="animal-text p-4">
-									<c:set var="keyW" value="${fn:split(obj.dog_tag, ',')}"></c:set>
-									<p class="text-white small text-uppercase mb-0"># ${obj.company_local} <c:forEach var="word" items="${keyW}"># ${word} </c:forEach> </p>
+									<c:set var="keyW" value="${fn:split(obj.dog_tag, ',')}"/>
+									<p class="text-white small text-uppercase mb-0"># ${obj.dog_region} <c:forEach var="word" items="${keyW}"># ${word} </c:forEach> </p>
 									<h5 class="text-white mb-0 dogname">${obj.dog_name} >></h5>
 								</div>
 							</div>
 						</a>
 					</div>
-				</c:forEach> 
-					
-			<%-- <c:forEach var="obj" items="${dogList}">
-					<div class="col col-lg-4 col-md-6 px-3 pb-5">
-						<a class="animal-item" href="#" onclick="popup();">
-							<div class="position-relative">
-							<img class="img-fluid" src="../img/animal-md-1.jpg" alt="" />
-								<div class="animal-text p-4">
-									<p class="text-white small text-uppercase mb-0"># ${obj.company_local} # ${obj.dog_tag} </p>
-									<h5 class="text-white mb-0">${obj.dog_name} >></h5>
-								</div>
-							</div>
-						</a>
-					</div>
-				</c:forEach> --%>
-							
+				</c:forEach>
 			</div>
 			
 				
@@ -256,21 +238,12 @@ $(".animal-item").on("click", function(){
 		success : function(result){
 			$('.dog_info').html(result).show();
 		}
-//		error : function(xhr, ajaxOptions, thrownError){
-//			console.log('Error : ' + xhr.status + '\n' +
-//						'Message : ' + xhr.statusText + '\n' +
-//						'Response : ' + xhr.responseText + '\n' + thrownError);
-//			}
 	});
 	
 	myModal.show();
 	
 
 });
-
-//function popup() {
-//	myModal.show();
-//}
 
 function pop1() {
 	myModal.hide();

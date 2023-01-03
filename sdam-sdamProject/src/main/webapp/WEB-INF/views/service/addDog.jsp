@@ -86,8 +86,32 @@
 				<div class="card-body">
 					<form:form action="${root }service/addDog_pro" method="post" modelAttribute="dogBean" enctype="multipart/form-data">
 						<div class="form-group pb-2">
+							<form:label path="dog_region" class="pb-2">지역&nbsp&nbsp</form:label>
+							<div class="d-sm-inline-block">
+								<form:select id="sel-local" class="form-select form-select-md mb-3" aria-label=".form-select-lg example" path="dog_region">
+									<option selected disabled>서비스를 제공할 지역을 선택하세요</option>
+									<form:option value="서울">서울</form:option>
+									<form:option value="부산">부산</form:option>
+									<form:option value="대구">대구</form:option>
+									<form:option value="인천">인천</form:option>
+									<form:option value="광주">광주</form:option>
+									<form:option value="대전">대전</form:option>
+									<form:option value="울산">울산</form:option>
+									<form:option value="세종">세종</form:option>
+									<form:option value="경기도">경기도</form:option>
+									<form:option value="강원도">강원도</form:option>
+									<form:option value="충청도">충청도</form:option>
+									<form:option value="전라도">전라도</form:option>
+									<form:option value="경상도">경상도</form:option>
+									<form:option value="제주도">제주도</form:option>
+								</form:select>
+								<form:errors path="dog_region" style="color:red"/>
+							</div>
+						</div>
+						<div class="form-group pb-2">
 							<form:label path="dog_name" class="pb-2">이름</form:label>
 							<form:input path="dog_name" class="form-control"/>
+							<form:errors path="dog_name" style="color:red"/>
 						</div>
 						<div class="form-group pb-2">
 							<form:label path="dog_type" class="pb-2">견종</form:label>
@@ -101,11 +125,13 @@
 							<form:label path="dog_sex" class="pb-2">성별</form:label><br>
 							<form:radiobutton path="dog_sex" value="여아" id="XX" class="col-1"/> 여아 &nbsp;
 							<form:radiobutton path="dog_sex" value="남아" id="XY" class="col-1"/> 남아
+							<form:errors path="dog_sex" style="color:red"/>
 						</div>
 						<div class="form-group pb-2">
 							<form:label path="dog_neutralization" class="pb-2">중성화 여부</form:label><br>
-							<form:radiobutton path="dog_neutralization" value="중성화 했어요" id="Y" class="col-1"/> 했다 &nbsp;
-							<form:radiobutton path="dog_neutralization" value="중성화 안했어요" id="N" class="col-1"/> 안했다
+							<form:radiobutton path="dog_neutralization" value="Y" id="Y" class="col-1"/> Y &nbsp;
+							<form:radiobutton path="dog_neutralization" value="N" id="N" class="col-1"/> N
+							<form:errors path="dog_neutralization" style="color:red"/>
 						</div>
 						<div class="form-group pb-2">
 							<form:label path="dog_tag" class="pb-2">태그</form:label><br>
@@ -121,17 +147,13 @@
 						<div class="form-group pb-2">
 							<form:label path="dog_memo" class="pb-2">소개</form:label>
 							<form:textarea path="dog_memo" class="form-control"/>
+							<form:errors path="dog_memo" style="color:red"/>
 						</div>
 						<div class="form-group pb-4">
 							<form:label path="upload_file" class="pb-2">프로필사진</form:label>
 							<form:input type="file" path="upload_file" class="form-control pb-3" accept="image/*"/>
+							<form:errors path="upload_file" style="color:red"/>
 						</div>
-						<div class="form-group pb-2">
-							<form:label path="company_loginId" class="pb-2">회사이름</form:label>
-							<form:input path="company_loginId" class="form-control" />
-						</div>
-						<!-- company값 user에서 id받고, user에서 name값 value에 뿌려주기? -->
-						
 						<div class="form-group">
 							<div class="text-end pb-1">
 								<form:button class="btn btn-primary">등록하기</form:button>

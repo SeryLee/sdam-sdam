@@ -105,9 +105,11 @@ CREATE TABLE therapy_dog_table (
                                    dog_sex            VARCHAR(10)  NOT NULL, -- 테라피독성별
                                    dog_neutralization VARCHAR(20)  NOT NULL, -- 중성화여부
                                    dog_memo           LONG VARCHAR NOT NULL, -- 테라피독소개
-                                   dog_picture        VARCHAR(500) NULL,     -- 테라피독사진
+                                   dog_picture        VARCHAR(500) NOT NULL, -- 테라피독사진
                                    dog_tag            VARCHAR(50)  NOT NULL, -- 테라피독태그
-                                   company_id         INTEGER      NOT NULL  -- 기업ID
+                                   dog_region         VARCHAR(50)  NOT NULL, -- 테라피독지역
+                                   company_id         INTEGER      NULL      -- 기업ID
+                                   user_idx           INTEGER      NULL,     -- 회원PK
 );
 
 -- therapy_dog_table 기본키
@@ -133,6 +135,18 @@ ALTER TABLE therapy_dog_table
                 )
                 REFERENCES company_table ( -- company_table
                                           company_id -- 기업ID
+                    )
+    ON DELETE SET NULL;
+
+-- therapy_dog_table
+ALTER TABLE therapy_dog_table
+    ADD
+        CONSTRAINT FK_user_table_TO_therapy_dog_table -- user_table -> therapy_dog_table
+            FOREIGN KEY (
+                         user_idx -- 회원PK
+                )
+                REFERENCES user_table ( -- user_table
+                                       user_idx -- 회원PK
                     )
     ON DELETE SET NULL;
 
